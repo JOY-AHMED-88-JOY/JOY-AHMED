@@ -2,8 +2,8 @@
 # Joy Random 
 ### <br>   ❖ Copy Code❖
 ```
-rm -rf Old
-git clone https://github.com/JOY-AHMED-88-JOY/Old
-cd Old
-python Joy.py
+rm -rf JOY-AHMED
+git clone https://github.com/JOY-AHMED-88-JOY/JOY-AHMED
+cd JOY-AHMED
+python old.py
 ```
