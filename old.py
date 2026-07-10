@@ -286,7 +286,7 @@ def old_Tree():
     print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mEXAMPLE {Y}:{G} 20000 / 30000 / 99999")
     limit = input(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mTOTAL ID COUNT {Y}:{G} ")
     linex()
-    prefix = '1000004'
+    prefix = '10000000'
     for _ in range(int(limit)):
         suffix = ''.join(random.choices('0123456789', k=8))
         uid = prefix + suffix
